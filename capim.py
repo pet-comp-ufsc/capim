@@ -13,9 +13,15 @@ def load_data(ident):
 		flask.abort(404)
 	return data, 200
 
-@app.route('/store', methods=['PUT'])
-def store_data():
-	flask.abort(501)
+@app.route('/store/<ident>', methods=['POST'])
+def store_data(ident):
+	try:
+		fp = open('/'.join(['data', '.'.join([ident, 'json'])]), 'wb')
+		fp.write(flask.request.data)
+		fp.close()
+	except IOError:
+		flask.abort(403)
+	return '', 204
 
 if __name__ == '__main__':
 	app.run()
