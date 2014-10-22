@@ -10,6 +10,7 @@ setuptools.setup(
 		license='GNU/GPL Affero',
 		install_requires=[
 			'flask',
+			'flask-assets',
 			'uwsgi',
 		],
 )
